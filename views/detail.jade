@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .container
+    h2(align='center') #{title}
+    ul.collection.with-header
+      li.collection-header
+        h4 #{one._id}
+      li.collection-item Name: #{one.name}
+      li.collection-item Room Number: #{one.room_no}
+      li.collection-item Floor: #{one.floor}
+      li.collection-item Wing: #{one.wing}
+      li.collection-item Type: #{one.type}
+      li.collection-item Description: #{one.desc}
+      li.collection-item Date Added: #{one.date}

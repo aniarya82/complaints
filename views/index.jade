@@ -1,5 +1,63 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1(align='center')= title
+  .container
+    .row
+      form.col.s12(role='form' action='/submit' method='post' id='logs')
+        .row
+          .input-field.col.s6
+            input#name.validate(type='text' name='name' required)
+            label(for='name') Name
+          .input-field.col.s6
+            input#room.validate(type='text' name='room_no' pattern='[A-Da-d]{2}[-][0-9]{3}' required)
+            label(for='room' data-error='wrong') Room Number
+        .row
+          .input-field.col.s3
+            select(name='floor' form='logs')
+              option(value='' disabled selected) Select Floor
+              option(value='Ground') Ground
+              option(value='First') First
+              option(value='Second') Second
+              option(value='Third') Third
+              option(value='Fourth') Fourth
+          .input-field.col.s3
+            select(name='wing' form='logs')
+              option(value='' disabled selected) Select Wing
+              option(value='AA') AA
+              option(value='A') A
+              option(value='AB') AB
+              option(value='B') B
+              option(value='BC') BC
+              option(value='C') C
+              option(value='CD') CD
+              option(value='D') D
+              option(value='DD') DD
+          .input-field.col.s3
+            select(name='type' form='logs')
+              option(value='' disabled selected) Select Type
+              option(value='Washroom') Washroom
+              option(value='Washing Machine') Washing Machine
+              option(value='Aquaguard') Aquaguard
+              option(value='Water Cooler') Water Cooler
+          .input-field.col.s3
+            input#desc.validate(type='text' name='desc')
+            label(for='desc') Description
+        .row
+          .input-field.col.s12
+            button.btn.waves-effect.waves-light(type='submit' name='action') Submit
+            //- a.waves-effect.waves-light.btn Submit
+
+  script.
+    $(document).ready(function () {
+      $('select').material_select();
+      //- $('#logs input').on('keyup blur', function () {
+      //-   if ($('#logs').valid()) {
+      //-     $('button.btn').removeClass('disabled');
+      //-     $('button.btn').prop('disabled', false);
+      //-   } else {
+      //-     $('button.btn').prop('disabled', 'disabled');
+      //-   }
+      //- });
+      $('#logs').validate();
+    });

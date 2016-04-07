@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  .container(align='center')
+    h3 Your complaint has been #{title}.
+    h4 Here is your details.
+    a(href='/detail/' + one._id) Link

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .container
+    table
+      thead
+        tr
+          th Name
+          th Room No
+          th Floor
+          th Wing
+          th Type
+          th Description
+          th Date
+      tbody
+        - each one in data
+          tr
+            th= one.name
+            th= one.room_no
+            th= one.floor
+            th= one.wing
+            th= one.type
+            th= one.desc
+            th= one.date
