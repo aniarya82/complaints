@@ -14,15 +14,15 @@ block content
             label(for='room' data-error='wrong') Room Number
         .row
           .input-field.col.s3
-            select(name='floor' form='logs')
+            select#floor(name='floor' form='logs')
               option(value='' disabled selected) Select Floor
-              option(value='Ground') Ground
-              option(value='First') First
-              option(value='Second') Second
-              option(value='Third') Third
-              option(value='Fourth') Fourth
+              option(value='1') Ground
+              option(value='2') First
+              option(value='3') Second
+              option(value='4') Third
+              option(value='5') Fourth
           .input-field.col.s3
-            select(name='wing' form='logs')
+            select#wing(name='wing' form='logs')
               option(value='' disabled selected) Select Wing
               option(value='AA') AA
               option(value='A') A
@@ -34,23 +34,82 @@ block content
               option(value='D') D
               option(value='DD') DD
           .input-field.col.s3
-            select(name='type' form='logs')
+            select#type(name='type' form='logs')
               option(value='' disabled selected) Select Type
               option(value='Washroom') Washroom
               option(value='Washing Machine') Washing Machine
               option(value='Aquaguard') Aquaguard
               option(value='Water Cooler') Water Cooler
-          .input-field.col.s3
+              option(value='Other') Other
+          .input-field.col.s3#wwrm4
+            select#wroom(name='washroom' form='logs')
+              option(value='' disabled selected) Select Washroom
+              option#uu(value='1') 1
+              option#uu(value='2') 2
+              option#uu(value='3') 3
+              option#uu(value='4') 4
+          .input-field.col.s3#wwrm1
+            select#wroom(name='washroom' form='logs')
+              option(value='1') 1
+          .input-field.col.s3#wwrm2
+            select#wroom(name='washroom' form='logs')
+              option(value='' disabled selected) Select Washroom
+              option#uu(value='1') 1
+              option#uu(value='2') 2
+        .row
+          .input-field.col.s12
             input#desc.validate(type='text' name='desc')
             label(for='desc') Description
         .row
           .input-field.col.s12
             button.btn.waves-effect.waves-light(type='submit' name='action') Submit
             //- a.waves-effect.waves-light.btn Submit
+        p#num 
 
   script.
     $(document).ready(function () {
+      $('#wwrm4').hide();
+      $('#wwrm2').hide();
+      $('#wwrm1').hide();
       $('select').material_select();
+      $('#floor').change(function () {
+        var value = $(this).val();
+        $('#num').html('');
+        $('#wwrm4').hide();
+        $('#wwrm2').hide();
+        $('#wwrm1').hide();
+      });
+      $('#wing').change(function () {
+        var value = $(this).val();
+        $('#num').html('');
+        $('#wwrm4').hide();
+        $('#wwrm2').hide();
+        $('#wwrm1').hide();
+      });
+      $('#type').change(function () {
+        var value = $(this).val();
+        var lwwrm = $('#wing').val().length;
+        if (value === 'Washroom') {
+          if ($('#wing').val() == 'AA') {
+            $('#wwrm1').show();
+          } else if (lwwrm == 2) {
+            $('#wwrm2').show();
+          } else if (lwwrm == 1) {
+            $('#wwrm4').show();
+          }
+          var tag = $('#wing').val() +' - '+ $('#floor').val();
+          var lab = $('#num').text();
+          $('#num').html(tag);
+          $('#uu').each(function () {
+            $(this).html(lab);
+          });
+          //- $('#wroom option').each(function () {
+          //-   $(this).text() = lab;
+          //- });
+        } else {
+          $('#wwrm').hide();
+        }
+      });
       //- $('#logs input').on('keyup blur', function () {
       //-   if ($('#logs').valid()) {
       //-     $('button.btn').removeClass('disabled');
@@ -61,3 +120,10 @@ block content
       //- });
       $('#logs').validate();
     });
+    
+    //- 4 - washroom | taps and bathroom
+    //- 3 - room cleaning - contact workers , or if poster not working
+    //- 5 - electric appliance | washing | gesyer | Aquaguard | water Cooler | room
+    //- Login and signup
+    //- Status of complaintes | color coded
+    //- 2 - mess mess | floor | basing, soap , bathroom

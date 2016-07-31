@@ -14,6 +14,7 @@ router.post('/submit', function (req, res, next) {
     floor: req.body.floor,
     wing: req.body.wing,
     type: req.body.type,
+    washroom: req.body.washroom,
     desc: req.body.desc,
     date: Date.now()
   }, function (err, one) {

@@ -5,6 +5,7 @@ var compSchema = mongoose.Schema({
   floor: String,
   wing: String,
   type: String,
+  washroom: String,
   desc: String,
   date: Date
 })

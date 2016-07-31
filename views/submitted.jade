@@ -2,6 +2,10 @@ extends layout
 
 block content
   .container(align='center')
-    h3 Your complaint has been #{title}.
-    h4 Here is your details.
+    h3 Your complaint has been #{title}
+    if one.washroom
+      h4 Complaint for LAV/#{one.wing} - #{one.floor}#{one.washroom} about #{one.desc}
+    else
+      h4 #{one.type} complaint #{one.wing} - #{one.floor}
     a(href='/detail/' + one._id) Link
+    p For more details
